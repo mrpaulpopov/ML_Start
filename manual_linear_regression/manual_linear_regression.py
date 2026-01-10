@@ -5,7 +5,7 @@ from rmse import rmse
 
 random.seed(0)  # We set the random seed in order to always get the same results.
 
-def linear_regression(x, y, learning_rate=0.01,
+def manual_linear_regression(x, y, learning_rate=0.01,
                       epochs=10):  # дефолтные значения у learning_rate и epochs. Теперь их не обязательно указывать
     m = random.random()
     b = random.random()

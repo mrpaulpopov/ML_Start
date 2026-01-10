@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
 from data_simple import x, y
 from plotting import plot_points, draw_line
-from linear_regression import linear_regression
-from scikit_linear_regression import scikit_linear_regression
+from manual_linear_regression import manual_linear_regression
+from linear_regression_numpy import linear_regression_numpy
 
 
 plt.ylim(0,500) # ограничение внешнего вида графика
 
 if __name__ == "__main__":
-    m, b, errors = linear_regression(x, y, learning_rate = 0.01,
-                                     epochs = 2000) # здесь в т.ч. идет постройка графика
+    m, b, errors = manual_linear_regression(x, y, learning_rate=0.01,
+                                            epochs=2000)  # здесь в т.ч. идет постройка графика
     print('Price per room:', m)
     print('Base price:', b)
     plot_points(x, y)
@@ -31,7 +31,11 @@ if __name__ == "__main__":
     # Это будет удобно, когда мы захотим изменить Х, взять их не из errors.
     # =================================
 
-    y_hat, y_hat_array = scikit_linear_regression(x, y, point=4)
+    model, y_hat, y_hat_array = linear_regression_numpy(x, y, point=4)
+
+    # Print the coefficients and intercept
+    print("Coefficient:", model.coef_)
+    print("Intercept:", model.intercept_)
 
     plt.scatter(x, y, color='blue', label='Original Data')
     plt.plot(x, y_hat_array, color='red', label='Regression Line')
