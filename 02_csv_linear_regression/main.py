@@ -20,8 +20,8 @@ def task_linear_regression():
     plt.show()
 
     # Extract features (X) and target (y)
-    X = data[['Area']]  # Feature: Area
-    y = data['Price']  # Target: Price
+    X = data[['Area']]  # Feature: Area # 2D, но с одним столбцом. (2434, 1)
+    y = data['Price']  # Target: Price  # 1D                       (2434,)
 
     model, area_range, predicted_prices = linear_regression_dataframe(X, y)
 
@@ -43,6 +43,10 @@ def task_linear_regression():
     # Show the plot
     plt.grid(True)
     plt.show()
+    # Код выдаст предупреждение X does not have valid feature names, но это не страшно.
+    # y - именованные значения в pandas: y = data['Price'],
+    # x - это сгенерированный массив linspace из numpy.
+    # Предупреждение ругается на то, что у х нет имен, и это может привести к путанице.
 
 def task_save_for_latter():
     # https://github.com/luisguiserrano/manning/blob/master/Chapter_03_Linear_Regression/House_price_predictions.ipynb
