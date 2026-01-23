@@ -1,4 +1,5 @@
-# Polynomial Regression and Regularization
+# Polynomial Regression and Regularization with scikit-learn
+
 ### Polynomial Regression Without Regularization (Full Dataset)
 
 The first model is trained on the entire dataset (for visualization purposes only) without any form of regularization.
