@@ -42,7 +42,7 @@ def main():
 
     model_train_no_reg, poly = build_polynomial_regression(X_train, Y_train, DEGREE_USED, regularization=None)
     X_plot, Y_plot_poly = evaluate_polynomial_curve(model_train_no_reg, poly, X, Y)
-    # Этот график не добавляем в финальный результат curves_data как неинформативный
+    # Этот график не добавляем в финальный результат curves_data
     plot_polynomial_regression(X_plot, Y_plot_poly, X_train, Y_train,  X_test, Y_test,
                                save_path='images/02.png',
                                caption='Polynomial regression without regularization (train set only)', DPI=DPI)
