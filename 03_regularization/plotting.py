@@ -1,8 +1,7 @@
 import numpy as np
 import random
 import matplotlib.pyplot as plt
-random.seed(0)
-from sklearn.preprocessing import PolynomialFeatures
+plt.rcParams['axes.prop_cycle'] = plt.cycler(color=plt.cm.tab10.colors) # curves colors
 
 
 def draw_polynomial(coefs, x):
@@ -24,58 +23,38 @@ def draw_polynomial(coefs, x):
     plt.show()
 
 
-def plot_polynomial_regression(model, X, Y, degree, X_test=None, Y_test=None, caption=None):
+def plot_polynomial_regression(X_plot, Y_plot_poly, X_train, Y_train, X_test=None, Y_test=None,
+                               save_path=None, caption=None, DPI=200):
     """
     Рисование полиномиальной регрессии. На входе подается уже готовая модель
 
     Args:
-      model: The trained scikit-learn model object.
-      X: Input features (list or numpy array).
-      Y: Input labels (list or numpy array).
+      X: Input features (numpy array).
+      Y: Input labels (numpy array).
       degree: The degree of the polynomial used for training.
       X_test: Optional test set features (list or numpy array).
       Y_test: Optional test set labels (list or numpy array).
     """
-    X = np.array(X).reshape(-1, 1)
-    Y = np.array(Y)
+    plt.figure(dpi=DPI)
 
-    # Plot the original points
-
-    plt.scatter(X, Y, color='blue', label='Original Data')
-
-    # ======================================================================================
-    # Generate predicted values for plotting the curve.
-    # PolynomialFeatures — это утилита, которая готовит данные для полиномиальной регрессии.
-    # Expand x into polynomial features: [x, x^2, ..., x^degree].
-    # ======================================================================================
-
-    X_plot = np.linspace(np.min(X), np.max(X), 100).reshape(-1, 1)
-    poly = PolynomialFeatures(degree=degree, include_bias=False)
-    X_plot_poly = poly.fit_transform(X_plot) # Fit on plot data range
-
-    # ================================================================
-    # .fit обучает модель, а .predict использует уже обученную модель.
-    # Это просто подстановка Х в формулу.
-    # ================================================================
-
-    Y_plot_poly = model.predict(X_plot_poly)
+    # Plot the original curves_data
+    plt.scatter(X_train, Y_train, color='black', label='Training Data')
 
     # Plot the polynomial regression curve
+    plt.plot(X_plot, Y_plot_poly, color='indianred', label=f'Polynomial Regression')
 
-    plt.plot(X_plot, Y_plot_poly, color='red', label=f'Polynomial Regression (degree {degree})')
-
-    # Plot test data points if provided
+    # Plot test data curves_data if provided
     if X_test is not None and Y_test is not None:
         X_test = np.array(X_test).reshape(-1, 1)
         Y_test = np.array(Y_test)
-        plt.scatter(X_test, Y_test, color='orange', marker='^', label='Test Data')
+        plt.scatter(X_test, Y_test, color='chocolate', marker='^', label='Test Data')
 
     plt.xlabel('X')
     plt.ylabel('Y')
     if caption is not None:
-        plt.title(f'Polynomial Regression (degree {degree})\nmodel={model}, {caption}', fontsize=10)
+        plt.title(caption, fontsize=10)
     else:
-        plt.title(f'Polynomial Regression (degree {degree})\nmodel={model}', fontsize=10)
+        plt.title(f'Polynomial regression', fontsize=10)
     plt.legend(fontsize="small")
     plt.grid(True)
 
@@ -86,4 +65,53 @@ def plot_polynomial_regression(model, X, Y, degree, X_test=None, Y_test=None, ca
     # Для констистентности внешнего вида между графиками сделаем строгие ограничения:
     plt.xlim(-1, 1)  # ограничение по оси X
     plt.ylim(1, 2.1)  # ограничение по оси Y
+
+    if save_path is not None:
+        plt.savefig(save_path)
+    plt.show()
+
+def plot_overall_results(curves_data, X_train, Y_train, X_test, Y_test, DPI, save_path):
+    """
+     Рисование полиномиальной регрессии. На входе подается уже готовая модель
+
+     Args:
+       model: The trained scikit-learn model object.
+       X: Input features (list or numpy array).
+       Y: Input labels (list or numpy array).
+       X_test: Optional test set features (list or numpy array).
+       Y_test: Optional test set labels (list or numpy array).
+     """
+    plt.figure(dpi=DPI)
+    # Plot the original curves_data
+    plt.scatter(X_train, Y_train, color='black', label='Training Data')
+    # Plot test data curves_data if provided
+    if X_test is not None and Y_test is not None:
+        X_test = np.array(X_test).reshape(-1, 1)
+        Y_test = np.array(Y_test)
+        plt.scatter(X_test, Y_test, color='chocolate', marker='^', label='Test Data')
+
+    # Plot the polynomial regression curve
+    for i, curve in enumerate(curves_data):
+        if i == 0:
+            plt.plot(curve[0], curve[1], color='black', label=curve[2],
+                     linestyle=':')
+        else:
+            plt.plot(curve[0], curve[1], label=curve[2])
+
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.title('Comparison of polynomial regression models', fontsize=10)
+    plt.legend(fontsize="small")
+    plt.grid(True)
+
+    # Set plot bounds based on X and Y
+    # plt.xlim(np.min(X), np.max(X))
+    # plt.ylim(np.min(Y), np.max(Y))
+
+    # Для констистентности внешнего вида между графиками сделаем строгие ограничения:
+    plt.xlim(-1, 1)  # ограничение по оси X
+    plt.ylim(1, 2.1)  # ограничение по оси Y
+
+    if save_path is not None:
+        plt.savefig(save_path)
     plt.show()

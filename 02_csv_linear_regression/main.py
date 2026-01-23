@@ -28,7 +28,7 @@ def task_linear_regression():
     print(f"y-intercept: {model.intercept_}")
     print(f"slope (coefficient of Area): {model.coef_[0]}")
 
-    # Plot the original data points
+    # Plot the original data curves_data
     plt.scatter(X, y, color='blue', label='Data Points')
 
     # Plot the regression line
