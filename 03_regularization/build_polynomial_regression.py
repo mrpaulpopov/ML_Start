@@ -19,7 +19,6 @@ def build_polynomial_regression(X, Y, degree, regularization=None, alpha=1.0):
 
     Returns:
       model: A trained scikit-learn model object,
-      X_plot and Y_plot_poly for plotting the polynomial regression.
     """
 
     # настройки model
@@ -42,15 +41,15 @@ def build_polynomial_regression(X, Y, degree, regularization=None, alpha=1.0):
     return model, poly
 
 def evaluate_polynomial_curve(model, poly, X, Y):
-    # ==============================================================================
-    # X, Y - это 40 исходных точек.
-    # X_plot - это 100 красивых точек, просто для графика.
-    # .fit обучает модель, а .predict использует уже обученную модель
-    # (это просто подстановка Х в модель).
-    # X_plot - обычные числа, идут на график.
-    # X_plot_poly - промежуточная версия, X_plot после применения модели poly.
-    # Y_plot_poly - после обработки X_plot_poly это обычные числа Y, идут на график.
-    # ==============================================================================
+    '''
+    X, Y - это 40 исходных точек.
+    X_plot - это 100 красивых точек, просто для графика.
+    .fit обучает модель, а .predict использует уже обученную модель
+    (это просто подстановка Х в модель).
+    X_plot - обычные числа, идут на график.
+    X_plot_poly - промежуточная версия, X_plot после применения модели poly.
+    Y_plot_poly - после обработки X_plot_poly это обычные числа Y, идут на график.
+    '''
 
     X_plot = np.linspace(np.min(X), np.max(X), 100).reshape(-1, 1)
     X_plot_poly = poly.transform(X_plot)  # Преобразуем X_plot в вид для модели. Это служебная версия для модели.
