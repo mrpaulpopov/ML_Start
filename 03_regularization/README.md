@@ -76,11 +76,11 @@ without regularization, with L1 regularization, and with L2 regularization.
 
 The models were evaluated on the test set using the squared loss.
 
-| Model                         | Test squared loss |
-|------------------------------|-------------------|
-| No regularization            | 1862.04           |
-| L1 regularization (Lasso)    | 0.153             |
-| L2 regularization (Ridge)    | 0.104             |
+|            Model             |                 Test squared loss                 |
+|:----------------------------:|:-------------------------------------------------:|
+|      No regularization       | 1862.04<br/><img src="images/02.png" width="80"/> |
+|  L1 regularization (Lasso)   |  0.153<br/><img src="images/03.png" width="80"/>  |
+|  L2 regularization (Ridge)   |  0.104<br/><img src="images/04.png" width="80"/>  |
 
 The unregularized model exhibits poor performance on the test set,
 indicating severe overfitting.
