@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from data_simple import x, y
 from plotting import plot_points, draw_line
 from manual_linear_regression import manual_linear_regression
-from linear_regression_numpy import linear_regression_numpy
+from scikit_linear_regression import scikit_linear_regression
 
 
 plt.ylim(0,500) # ограничение внешнего вида графика
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     # Это будет удобно, когда мы захотим изменить Х, взять их не из errors.
     # =================================
 
-    model, y_hat, y_hat_array = linear_regression_numpy(x, y, point=4)
+    model, y_hat, y_hat_array = scikit_linear_regression(x, y, point=4)
 
     # Print the coefficients and intercept
     print("Coefficient:", model.coef_)

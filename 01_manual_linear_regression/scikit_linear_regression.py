@@ -1,7 +1,7 @@
 from sklearn.linear_model import LinearRegression
 import numpy as np
 
-def linear_regression_numpy(x, y, point=4):
+def scikit_linear_regression(x, y, point=4):
     # Reshape the features to be a 2D array, which is required by scikit-learn
     x_reshaped = x.reshape(-1, 1) # это поворот из горизонтального 1D-массива в вертикальный 1D-массив, требование scikit-learn
 
