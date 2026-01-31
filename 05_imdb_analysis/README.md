@@ -4,7 +4,7 @@ One limitation is that longer reviews may affect the final prediction more stron
 
 The main feature is that user can enter their own movie review and instantly get a prediction of its sentiment, along with a confidence score.
 
-Reviews are vectorized with the **Bag of Words** approach and classified using **Logistic Regression**.
+*Reviews are vectorized with the **Bag of Words** approach and classified using **Logistic Regression**.*
 
 ---
 
