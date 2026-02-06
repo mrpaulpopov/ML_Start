@@ -29,6 +29,7 @@
 - **Number of spam emails:** 1368  
 
 **Prior probability of spam:**
+
 $$
 P(\text{spam}) = \frac{1368}{5728} = 0.2388268156424581
 $$
@@ -46,6 +47,7 @@ $$
 $$
 P(\text{spam} \mid \text{"lottery"}) = 0.9 \\
 $$
+
 $$
 P(\text{spam} \mid \text{"sale"}) = 0.48148148148148145
 $$
