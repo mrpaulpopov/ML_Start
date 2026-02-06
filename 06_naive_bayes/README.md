@@ -49,7 +49,7 @@ P(\text{spam} \mid \text{"lottery"}) = 0.9 \\
 $$
 
 $$
-P(\text{spam} \mid \text{"sale"}) = 0.48148148148148145
+P(\text{spam} \mid \text{"sale"}) = 0.48148148148148145 \\
 $$
 ---
 
