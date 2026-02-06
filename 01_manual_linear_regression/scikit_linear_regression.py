@@ -13,14 +13,14 @@ def scikit_linear_regression(x, y, point=4):
 
     # Make a prediction for a new point
     new_point = np.array([[point]])  # Predict for a feature value of 4
-    y_hat = model.predict(new_point)
-    print(f"Predicted label for x={point}: {y_hat}")
+    y_pred = model.predict(new_point)
+    print(f"Predicted label for x={point}: {y_pred}")
 
     # Generate the predicted values using the model
-    y_hat_array = model.predict(x_reshaped)
-    print(y_hat_array)
+    y_pred_array = model.predict(x_reshaped)
+    print(y_pred_array)
 
-    return model, y_hat, y_hat_array
+    return model, y_pred, y_pred_array
 
 # ===========================
 # Scikit требователен к входным данным, поэтому превращаем в массивы через [[ ]]

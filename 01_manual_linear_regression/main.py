@@ -31,7 +31,7 @@ if __name__ == "__main__":
     # Это будет удобно, когда мы захотим изменить Х, взять их не из errors.
     # =================================
 
-    model, y_hat, y_hat_array = scikit_linear_regression(x, y, point=4)
+    model, y_pred, y_hat_array = scikit_linear_regression(x, y, point=4)
 
     # Print the coefficients and intercept
     print("Coefficient:", model.coef_)

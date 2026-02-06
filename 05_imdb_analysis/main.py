@@ -11,16 +11,13 @@ def load_and_prepare_data(path):
     return movies
 
 
-def vectorize_text(text, item=None, max_features=2000):
+def vectorize_text(text, item, max_features=2000):
     # Create word features (limit to top 5000 words for efficiency)
     # CountVectorizer creates Bag of words.
     # 2000 the most frequent words (recommended value)
     # 'stop_words = english' deletes english propositions and articles.
     vectorizer = CountVectorizer(max_features=max_features, stop_words='english', binary=True)
-    if item is not None:
-        X = vectorizer.fit_transform(text[item])
-    else:
-        X = vectorizer.fit_transform(text)
+    X = vectorizer.fit_transform(text[item])
     return X, vectorizer
 
 
@@ -87,10 +84,10 @@ def find_extreme_reviews(model, X, movies):
 def predict_own_review(model, vectorizer):
     print("Enter your review")
     input_review = [input()]
-    new_X = vectorizer.transform(input_review)
-    y = model.predict(new_X)
-    y_proba = model.predict_proba(new_X)[:, 1]
-    if y == 1:
+    X_pred = vectorizer.transform(input_review)
+    y_pred = model.predict(X_pred)
+    y_proba = model.predict_proba(X_pred)[:, 1]
+    if y_pred == 1:
         print(f"It's a positive review with a probability of {y_proba[0]*100:.2f}%.")
     else:
         y_proba = 1 - y_proba

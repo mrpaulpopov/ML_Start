@@ -14,8 +14,8 @@ def manual_linear_regression(x, y, learning_rate=0.01,
         if epoch % 50 == 0: # Прорисовка через каждые 50 epoch. Прорисовка всех epoch: if True:
             draw_line(m, b, starting=0, ending=8)
 
-        y_hat = x[0] * m + b # x[0] - костыль для новичка, но математически это д.б. mx+b
-        errors.append(rmse(y, y_hat)) # rmse от правдивого y и предсказанного y_hat.
+        y_pred = x[0] * m + b # x[0] - костыль для новичка, но математически это д.б. mx+b
+        errors.append(rmse(y, y_pred)) # rmse от правдивого y и предсказанного y_pred.
 
         i = random.randint(0, len(x) - 1)  # Нахождение одного случайного индекса
         num_rooms = x[i] # правдивое значение
